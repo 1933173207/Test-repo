@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'cause1', defaultValue: '1', description: 'Trigger cause1')
+        string(name: 'cause2', defaultValue: '2', description: 'Trigger cause2')
+        string(name: 'cause3', defaultValue: '3', description: 'Trigger cause3')
+    }
+
+    environment {
+        _e_auto_merge_build_num = "NA"
+    }
+
+    stages {
+        stage('Display Input Parameters1') {
+            steps {
+                script {
+                    echo "Hello"
+                    echo _e_auto_merge_build_num
+
+                    // 执行 Python 脚本并捕获输出
+                    // def pythonScript = "${env.WORKSPACE}/src/test.py"
+                    // def reviewOutput = sh(
+                    //     script: "python3 ${pythonScript}",
+                    //     returnStdout: true
+                    // ).trim()
+
+                    // echo reviewOutput
+                }
+            }
+        }
+        stage('Display Input Parameters2') {
+            steps {
+                script {
+                    echo cause1
+                    echo cause2
+                }
+            }
+        }
+    }
+}
